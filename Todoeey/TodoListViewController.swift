@@ -29,9 +29,10 @@ class TodoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        
         let todo = itemsArray[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         cell.textLabel?.text = todo
         return cell
     }
@@ -67,9 +68,6 @@ class TodoListViewController: UITableViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
-    
-    
     
 }
 
