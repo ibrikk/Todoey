@@ -32,9 +32,9 @@ class TodoListViewController: UITableViewController {
         newItem3.title = "Watch TV"
         itemsArray.append(newItem3)
         
-//        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
-//            itemsArray = items
-//        }
+        if let items = defaults.array(forKey: "TodosListArray") as? [Todo] {
+            itemsArray = items
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,11 +47,15 @@ class TodoListViewController: UITableViewController {
         let todo = itemsArray[indexPath.row]
         
         cell.textLabel?.text = todo.title
+        
+        cell.accessoryType = todo.done ? .checkmark : .none
         return cell
     }
     
     // MARK - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        itemsArray[indexPath.row].done = !itemsArray[indexPath.row].done
+        
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
         } else {
@@ -71,7 +75,7 @@ class TodoListViewController: UITableViewController {
             let newTodo = Todo()
             newTodo.title = textField.text!
             self.itemsArray.append(newTodo)
-            self.defaults.set(self.itemsArray, forKey: "TodoListArray")
+            self.defaults.set(self.itemsArray, forKey: "TodosListArray")
             self.tableView.reloadData()
         }
         
