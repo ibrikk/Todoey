@@ -11,7 +11,7 @@ class TodoListViewController: UITableViewController {
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     
-    var itemsArray = ["Wash Dishes", "Take out the garbage", "Walk the dog", "Do Laundry"]
+    var itemsArray = [Todo]()
     
     let defaults = UserDefaults.standard
     
@@ -19,9 +19,22 @@ class TodoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
-            itemsArray = items
-        }
+        let newItem = Todo()
+        newItem.title = "Load the Dishwaher"
+        newItem.done = true
+        itemsArray.append(newItem)
+        
+        let newItem2 = Todo()
+        newItem2.title = "Walk the Cat"
+        itemsArray.append(newItem2)
+        
+        let newItem3 = Todo()
+        newItem3.title = "Watch TV"
+        itemsArray.append(newItem3)
+        
+//        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
+//            itemsArray = items
+//        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,7 +46,7 @@ class TodoListViewController: UITableViewController {
         
         let todo = itemsArray[indexPath.row]
         
-        cell.textLabel?.text = todo
+        cell.textLabel?.text = todo.title
         return cell
     }
     
@@ -55,7 +68,9 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) {
             (action) in
             // Alert action
-            self.itemsArray.append(textField.text!)
+            let newTodo = Todo()
+            newTodo.title = textField.text!
+            self.itemsArray.append(newTodo)
             self.defaults.set(self.itemsArray, forKey: "TodoListArray")
             self.tableView.reloadData()
         }
