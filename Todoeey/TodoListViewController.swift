@@ -21,22 +21,7 @@ class TodoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let newItem = Todo()
-        newItem.title = "Load the Dishwaher"
-        newItem.done = true
-        itemsArray.append(newItem)
-        
-        let newItem2 = Todo()
-        newItem2.title = "Walk the Cat"
-        itemsArray.append(newItem2)
-        
-        let newItem3 = Todo()
-        newItem3.title = "Watch TV"
-        itemsArray.append(newItem3)
-        
-        //        if let items = defaults.array(forKey: "TodosListArray") as? [Todo] {
-        //            itemsArray = items
-        //        }
+       loadItems()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,6 +87,18 @@ class TodoListViewController: UITableViewController {
             try data.write(to: dataFilePath!)
         } catch {
             print("Error encoding item in array \(error)")
+        }
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            
+            do {
+                itemsArray = try decoder.decode([Todo].self, from: data)
+            } catch {
+                print("Error decoding file \(error)")
+            }
         }
     }
     

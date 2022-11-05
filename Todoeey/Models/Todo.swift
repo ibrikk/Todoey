@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Todo: Encodable {
+class Todo: Codable {
     var title: String = ""
     var done: Bool = false
 }
