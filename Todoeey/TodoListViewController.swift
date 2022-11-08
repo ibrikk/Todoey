@@ -43,16 +43,13 @@ class TodoListViewController: UITableViewController {
     
     // MARK - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        
         itemsArray[indexPath.row].done = !itemsArray[indexPath.row].done
         
-        saveItems()
+        //        context.delete(itemsArray[indexPath.row])
+        //        itemsArray.remove(at: indexPath.row)
         
-        //        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-        //            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        //        } else {
-        //            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        //        }
+        saveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -65,7 +62,6 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) {
             (action) in
             // Alert action
-            
             
             let newTodo = Todo(context: self.context)
             newTodo.title = textField.text!
