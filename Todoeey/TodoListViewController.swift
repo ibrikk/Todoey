@@ -22,7 +22,7 @@ class TodoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadItems()
+        loadTodos()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,7 +91,7 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadItems(with request: NSFetchRequest<Todo> = Todo.fetchRequest()) {
+    func loadTodos(with request: NSFetchRequest<Todo> = Todo.fetchRequest()) {
         
         do {
             itemsArray =  try context.fetch(request)
@@ -114,8 +114,21 @@ extension TodoListViewController: UISearchBarDelegate {
 
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 
-        loadItems(with: request)
+        loadTodos(with: request)
 
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadTodos()
+            
+            // Removing cursor after backspacing all letters in the searchBar
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+            
+           
+        }
     }
 
 }
