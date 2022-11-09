@@ -11,18 +11,17 @@ import CoreData
 class TodoListViewController: UITableViewController {
     
     @IBOutlet weak var addButton: UIBarButtonItem!
-    
-    var dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathExtension("Todos.plist")
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var itemsArray = [Todo]()
-    
-    let defaults = UserDefaults.standard
+
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadItems()
     }
     
@@ -92,16 +91,32 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadItems() {
-        let request: NSFetchRequest<Todo> = Todo.fetchRequest()
+    func loadItems(with request: NSFetchRequest<Todo> = Todo.fetchRequest()) {
+        
         do {
             itemsArray =  try context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
+        
         tableView.reloadData()
     }
     
     
+}
+
+extension TodoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
+        let request: NSFetchRequest<Todo> = Todo.fetchRequest()
+
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+
+        loadItems(with: request)
+
+    }
+
 }
 
