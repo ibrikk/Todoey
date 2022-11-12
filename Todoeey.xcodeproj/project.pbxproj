@@ -14,6 +14,7 @@
 		991ADE4B29143D5A00E1CBF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 991ADE4A29143D5A00E1CBF2 /* Assets.xcassets */; };
 		991ADE4E29143D5A00E1CBF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991ADE4C29143D5A00E1CBF2 /* LaunchScreen.storyboard */; };
 		991ADE5A2918531100E1CBF2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 991ADE582918531100E1CBF2 /* DataModel.xcdatamodeld */; };
+		993A52E7291B7699002977E8 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993A52E6291B7699002977E8 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		991ADE4D29143D5A00E1CBF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		991ADE4F29143D5A00E1CBF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		991ADE592918531100E1CBF2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		993A52E6291B7699002977E8 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				991ADE55291649B700E1CBF2 /* Models */,
 				991ADE4129143D5800E1CBF2 /* AppDelegate.swift */,
 				991ADE4329143D5800E1CBF2 /* SceneDelegate.swift */,
+				993A52E6291B7699002977E8 /* CategoryViewController.swift */,
 				991ADE4529143D5800E1CBF2 /* TodoListViewController.swift */,
 				991ADE4729143D5800E1CBF2 /* Main.storyboard */,
 				991ADE4A29143D5A00E1CBF2 /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				993A52E7291B7699002977E8 /* CategoryViewController.swift in Sources */,
 				991ADE4629143D5800E1CBF2 /* TodoListViewController.swift in Sources */,
 				991ADE5A2918531100E1CBF2 /* DataModel.xcdatamodeld in Sources */,
 				991ADE4229143D5800E1CBF2 /* AppDelegate.swift in Sources */,
