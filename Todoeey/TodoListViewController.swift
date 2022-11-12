@@ -43,7 +43,9 @@ class TodoListViewController: UITableViewController {
     // MARK - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        itemsArray[indexPath.row].done = !itemsArray[indexPath.row].done
+        let todo = itemsArray[indexPath.row]
+        
+        todo.done = !todo.done
         
         //        context.delete(itemsArray[indexPath.row])
         //        itemsArray.remove(at: indexPath.row)
@@ -58,7 +60,7 @@ class TodoListViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add new todo item", message: "", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add Item", style: .default) {
+        let action = UIAlertAction(title: "Add a Todo", style: .default) {
             (action) in
             // Alert action
             
