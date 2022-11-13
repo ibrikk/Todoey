@@ -72,7 +72,6 @@ class TodoListViewController: UITableViewController {
             self.itemsArray.append(newTodo)
             
             self.saveItems()
-            
         }
         
         alert.addTextField { (alertTextField) in

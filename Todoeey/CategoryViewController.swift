@@ -14,8 +14,6 @@ class CategoryViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +37,6 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "GoToTodos", sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,15 +68,13 @@ class CategoryViewController: UITableViewController {
         alert.addAction(action)
         
         alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new category"
             textField = alertTextField
+            alertTextField.placeholder = "Create new category"
         }
         
-        
         present(alert, animated: true, completion: nil)
+        
     }
-    
-    
     
     func saveCategories() {
         
@@ -91,7 +86,9 @@ class CategoryViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func loadCategories(with request: NSFetchRequest<Category> = Category.fetchRequest()) {
+    func loadCategories() {
+        
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
         
         do {
             categoriesArray = try context.fetch(request)
